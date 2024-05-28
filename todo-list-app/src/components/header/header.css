@@ -1,0 +1,16 @@
+@font-face {
+  font-family: fedra;
+  src: url("src/assets/font/fedra\ arabic.ttf");
+}
+
+header {
+  backdrop-filter: blur(100px);
+}
+
+.nav-links li {
+  width: 10rem;
+}
+
+.nav-links > li > a {
+  margin: 0 1rem;
+}

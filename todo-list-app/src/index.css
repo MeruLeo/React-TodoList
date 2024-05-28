@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "IRsans";
+  src: url("assets/font/fedra\ arabic.ttf");
+}
+@font-face {
+  font-family: "vazir";
+  src: url("assets/font/Vazir.ttf");
+}
+@font-face {
+  font-family: "fedra";
+  src: url("assets/font/fedra\ arabic.ttf");
+}
+
+body {
+  @apply bg-background-dark;
+}
+
+.nav-link {
+  @apply text-white no-underline m-4;
+}
+
+.header-option {
+  @apply m-4 text-white;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px; /* گرد کردن گوشه‌های پس زمینه اسکرول بار */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px; /* گرد کردن گوشه‌های اسکرولر */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@layer {
+  .custom-shadow {
+    box-shadow: 48px 48px 96px #37285d, -48px -48px 96px #dba0ff;
+  }
+}
