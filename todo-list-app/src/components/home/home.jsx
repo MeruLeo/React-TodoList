@@ -166,6 +166,7 @@ const stepsData = [
   },
 ];
 
+// calc doned tasks progress
 const CalcAdherence = ({ stepsData, setFinalResult }) => {
   useEffect(() => {
     const resultCalc = 100 / stepsData.length;
@@ -182,6 +183,7 @@ const CalcAdherence = ({ stepsData, setFinalResult }) => {
   }, [stepsData, setFinalResult]);
 };
 
+// show doned tasks on progress
 const AdherenceProgress = ({ completion }) => (
   <div className="h-3 border-2 border-green-500 rounded-full">
     <div
@@ -191,6 +193,7 @@ const AdherenceProgress = ({ completion }) => (
   </div>
 );
 
+// main component for progress
 const Adherence = () => {
   const [finalResult, setFinalResult] = useState(0);
 
@@ -211,8 +214,73 @@ const Adherence = () => {
   );
 };
 
+//todo list information (item)
+const Info = ({ number, info }) => (
+  <li className="text-white list-none flex items-center mt-4 relative">
+    <span className="info-number bg-purple-900 text-purple-org border-3 border-purple-org w-12 h-12 text-2xl flex items-center justify-center rounded-full font-fedra ml-4">
+      {number}
+    </span>
+    <h5 className="info-text m-0 bg-header-dark p-3 rounded-full border-3 border-purple-org">
+      {info}
+    </h5>
+  </li>
+);
+
+// todo list information (main)
+const Infos = () => (
+  <ul className="flex flex-col justify-center">
+    <Info number={1} info={"دسته بندی کار ها به صورت هفتگی ماهانه و سالانه"} />
+    <Info number={2} info={"نمایش محور پیشرفت به صورت درصدی"} />
+    <Info number={3} info={"نمایش تاریخ شمسی برای تسک ها و ژورنال ها"} />
+  </ul>
+);
+
+const JournalPreview = () => (
+  <div className=" text-white relative border-3 border-journal-border top-32 rounded-3xl">
+    <header className="flex p-3 bg-journal-header items-center justify-between journal-header">
+      <div>
+        <h2>خاطرات شمال</h2>
+        <ul className="flex items-center">
+          <li>
+            <h5 className="m-0 p-2 bg-yellow-900 text-yellow-300 rounded-lg">
+              مسافرت
+            </h5>
+          </li>
+          <li className="mr-4">
+            <button className="p-2 bg-slate-800 w-10 h-10 text-yellow-300 rounded-lg">
+              <i class="fa-regular fa-star"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between ml-4 bg-gray-800 text-gray-500 p-2 rounded-xl">
+          {/* <i className="fi fi-tr-calendar-days flex items-center justify-center ml-2"></i> */}
+          1403/03/09
+        </div>
+        <button className="text-3xl">
+          <i class="fi fi-tr-circle-ellipsis flex items-center justify-center"></i>
+        </button>
+      </div>
+    </header>
+    <main className="bg-journal-body p-4 journal-body">
+      <p>
+        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده
+        از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و
+        سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای
+        متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه
+        درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با
+        نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان
+        خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید
+        داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان
+        رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات
+        پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+      </p>
+    </main>
+  </div>
+);
+
 const Home = () => {
-  const [compelation, setCompelation] = useState(0);
   // default component content
   const headerText = "تودینگ ، پسر بزرگه دوینگ";
   const paragraphText = `
@@ -256,6 +324,20 @@ const Home = () => {
       ),
     },
   ];
+  const buttons4 = [
+    {
+      content: "ایجاد برنامه",
+      icon: <i class="fi fi-tr-memo-pad flex justify-center items-center"></i>,
+    },
+  ];
+  const buttons5 = [
+    {
+      content: "ثبت خاطره",
+      icon: (
+        <i className="fi fi-tr-journal flex items-center justify-center"></i>
+      ),
+    },
+  ];
   // default component content /
 
   return (
@@ -272,7 +354,7 @@ const Home = () => {
         <div className="row gx-5">
           <div className="col">
             <ContentSection
-              headerText="از تودو لیست ، تا دفترچه خاطرات"
+              headerText="از تودو لیست ، تا ژورنال"
               paragraphText={paragraphText}
               buttons={buttons2}
               extraClass="top-60"
@@ -315,6 +397,37 @@ const Home = () => {
       </div>
       <Steps />
       <Adherence />
+      <div class="container px-4 text-center">
+        <div class="row gx-5">
+          <div class="col">
+            <div class="p-3">
+              <ContentSection
+                headerText={"برنامه ها در تودینگ"}
+                paragraphText={<Infos />}
+                buttons={buttons4}
+                extraClass="top-96"
+              />
+            </div>
+          </div>
+          <div class="col">
+            <div class="p-3">
+              <ContentImage
+                src="src/assets/check.png"
+                alt="check"
+                extraClass="top-96"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="" style={{ top: "30rem", position: "relative" }}>
+        <ContentSection
+          headerText={"دفترچه خاطرات"}
+          paragraphText={paragraphText}
+          buttons={buttons5}
+        />
+        <JournalPreview />
+      </div>
     </div>
   );
 };

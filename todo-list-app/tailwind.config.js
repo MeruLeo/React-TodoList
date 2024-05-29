@@ -14,6 +14,10 @@ export default {
 
         "purple-org": "#8964e8",
         "red-org": "#f76769",
+
+        "journal-header": "#161B22",
+        "journal-body": "#0D1117",
+        "journal-border": "#262B32",
       },
       borderSpacing: {
         1: "1px",
