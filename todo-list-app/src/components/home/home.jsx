@@ -12,12 +12,7 @@ const ContentHeader = ({ text }) => (
 );
 
 // paragraph (content) component
-const ContentParagraph = ({ text }) => (
-  <p>
-    <i className="fi fi-br-quote-right ml-2 text-purple-org"></i>
-    {text}
-  </p>
-);
+const ContentParagraph = ({ text }) => <p>{text}</p>;
 
 // the main of component => header, paragraph, btn
 const ContentSection = ({
@@ -220,7 +215,7 @@ const Info = ({ number, info }) => (
     <span className="info-number bg-purple-900 text-purple-org border-3 border-purple-org w-12 h-12 text-2xl flex items-center justify-center rounded-full font-fedra ml-4">
       {number}
     </span>
-    <h5 className="info-text m-0 bg-header-dark p-3 rounded-full border-3 border-purple-org">
+    <h5 className="info-text m-0 bg-header-dark p-3 w-[30rem] rounded-full border-3 border-purple-org">
       {info}
     </h5>
   </li>
@@ -232,6 +227,45 @@ const Infos = () => (
     <Info number={1} info={"دسته بندی کار ها به صورت هفتگی ماهانه و سالانه"} />
     <Info number={2} info={"نمایش محور پیشرفت به صورت درصدی"} />
     <Info number={3} info={"نمایش تاریخ شمسی برای تسک ها و ژورنال ها"} />
+  </ul>
+);
+
+const WhyToding = ({ icon, title, content }) => (
+  <li className="text-white w-80 p-2  rounded-3xl flex flex-col items-center">
+    <span className="text-3xl text-purple-org w-12 h-12 flex items-center justify-center rounded-full">
+      {icon}
+    </span>
+    <div className="flex flex-col items-center">
+      <h4 className="font-fedra">{title}</h4>
+      <span className="w-5 block h-1 rounded-3xl bg-purple-org mt-2 mb-3"></span>
+      <h5>{content}</h5>
+    </div>
+  </li>
+);
+
+const WhyTodingWrapper = () => (
+  <ul className="flex items-center justify-between">
+    <WhyToding
+      icon={<i className="fa-solid fa-infinity"></i>}
+      title={"بدون محدودیت"}
+      content={
+        "تودینگ محدودیتی ندارد ! یعنی شما میتوانید از تمامی قابلیت های برنامه بدون نیاز به پرداخت هزینه استفاده کنید"
+      }
+    />
+    <WhyToding
+      icon={<i className="fa-solid fa-border-all"></i>}
+      title={"همه در یک"}
+      content={
+        "شما به هرچیزی که برای نوشتن نیاز دارید در تودینگ بدست میاورید ، از رنگ و لعاب تا پیشرفته ترین قابلیت های نوشتاری"
+      }
+    />
+    <WhyToding
+      icon={<i className="fa-solid fa-brush"></i>}
+      title={"شخصی سازی"}
+      content={
+        "زیبایی نوشته ها با تودینگ . شما میتوانید تسک ها و پوشه های خود را شخصی سازی کنید و شکل و شمایل زیبایی به نویسه هایتان بدهید"
+      }
+    />
   </ul>
 );
 
@@ -277,6 +311,7 @@ const JournalPreview = () => (
         پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
       </p>
     </main>
+    {/*<div className="course-content-shadow absolute bottom-0 right-0 left-0 h-[160px] bg-gradient-to-t from-white dark:from-darker from-0% via-white/[55%] dark:via-darker/[55%] via-70% to-white/0 dark:to-darker/0 to-100%"></div>*/}
   </div>
 );
 
@@ -335,6 +370,22 @@ const Home = () => {
       content: "ثبت خاطره",
       icon: (
         <i className="fi fi-tr-journal flex items-center justify-center"></i>
+      ),
+    },
+  ];
+  const buttons6 = [
+    {
+      content: "ثبت نام",
+      icon: (
+        <i className="fi fi-tr-person-circle-plus flex items-center justify-center"></i>
+      ),
+    },
+  ];
+  const buttons7 = [
+    {
+      content: "بیشتر بدانید",
+      icon: (
+        <i className="fi fi-tr-file-circle-info flex items-center justify-center"></i>
       ),
     },
   ];
@@ -428,6 +479,18 @@ const Home = () => {
         />
         <JournalPreview />
       </div>
+      <ContentSection
+        headerText={"چرا تودینگ ؟"}
+        paragraphText={<WhyTodingWrapper />}
+        buttons={buttons7}
+        extraClass={"top-[45rem]"}
+      />
+      <ContentSection
+        headerText={"همین الان شروع کن"}
+        paragraphText={paragraphText}
+        buttons={buttons6}
+        extraClass={"top-[50rem]"}
+      />
     </div>
   );
 };
