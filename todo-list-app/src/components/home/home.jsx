@@ -1,13 +1,13 @@
 import "./home.css";
 import MagicBtn from "./magicBtn";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 // header component => {تودینگ ، پسر بزرگه دوینگ}
 const ContentHeader = ({ text }) => (
   <h1 className="font-fedra flex items-center justify-center">
     <i className="fi fi-br-bracket-curly-right text-purple-org"></i>
     {text}
-    <i className="fi fi-br-bracket-curly text-purple-org"></i>
+    <i className="fi fi-br-bracket-curly flex items-center justify-center text-purple-org"></i>
   </h1>
 );
 
@@ -243,77 +243,108 @@ const WhyToding = ({ icon, title, content }) => (
   </li>
 );
 
+const whyTodingData = [
+  {
+    icon: <i className="fa-solid fa-infinity"></i>,
+    title: "بدون محدودیت",
+    content:
+      "تودینگ محدودیتی ندارد ! یعنی شما میتوانید از تمامی قابلیت های برنامه بدون نیاز به پرداخت هزینه استفاده کنید",
+  },
+  {
+    icon: <i className="fa-solid fa-border-all"></i>,
+    title: "همه در یک",
+    content:
+      "شما به هرچیزی که برای نوشتن نیاز دارید در تودینگ بدست میاورید ، از رنگ و لعاب تا پیشرفته ترین قابلیت های نوشتاری",
+  },
+  {
+    icon: <i className="fa-solid fa-brush"></i>,
+    title: "شخصی سازی",
+    content:
+      "زیبایی نوشته ها با تودینگ . شما میتوانید تسک ها و پوشه های خود را شخصی سازی کنید و شکل و شمایل زیبایی به نویسه هایتان بدهید",
+  },
+];
+
 const WhyTodingWrapper = () => (
-  <ul className="flex items-center justify-between">
-    <WhyToding
-      icon={<i className="fa-solid fa-infinity"></i>}
-      title={"بدون محدودیت"}
-      content={
-        "تودینگ محدودیتی ندارد ! یعنی شما میتوانید از تمامی قابلیت های برنامه بدون نیاز به پرداخت هزینه استفاده کنید"
-      }
-    />
-    <WhyToding
-      icon={<i className="fa-solid fa-border-all"></i>}
-      title={"همه در یک"}
-      content={
-        "شما به هرچیزی که برای نوشتن نیاز دارید در تودینگ بدست میاورید ، از رنگ و لعاب تا پیشرفته ترین قابلیت های نوشتاری"
-      }
-    />
-    <WhyToding
-      icon={<i className="fa-solid fa-brush"></i>}
-      title={"شخصی سازی"}
-      content={
-        "زیبایی نوشته ها با تودینگ . شما میتوانید تسک ها و پوشه های خود را شخصی سازی کنید و شکل و شمایل زیبایی به نویسه هایتان بدهید"
-      }
-    />
+  <ul className="flex items-center justify-between mt-4">
+    {whyTodingData.map((todingData, index) => (
+      <WhyToding
+        key={index}
+        icon={todingData.icon}
+        title={todingData.title}
+        content={todingData.content}
+      />
+    ))}
   </ul>
 );
 
-const JournalPreview = () => (
-  <div className=" text-white relative border-3 border-journal-border top-32 rounded-3xl">
-    <header className="flex p-3 bg-journal-header items-center justify-between journal-header">
-      <div>
-        <h2>خاطرات شمال</h2>
-        <ul className="flex items-center">
-          <li>
-            <h5 className="m-0 p-2 bg-yellow-900 text-yellow-300 rounded-lg">
-              مسافرت
-            </h5>
-          </li>
-          <li className="mr-4">
-            <button className="p-2 bg-slate-800 w-10 h-10 text-yellow-300 rounded-lg">
-              <i class="fa-regular fa-star"></i>
-            </button>
-          </li>
-        </ul>
-      </div>
-      <div className="flex items-center justify-between">
-        <div className="flex items-center justify-between ml-4 bg-gray-800 text-gray-500 p-2 rounded-xl">
-          {/* <i className="fi fi-tr-calendar-days flex items-center justify-center ml-2"></i> */}
-          1403/03/09
+const JournalPreview = () => {
+  const [isStarActive, setIsStarActive] = useState(false);
+  const starRef = useRef(null);
+
+  const stared = () => {
+    setIsStarActive((prevState) => !prevState);
+  };
+
+  useEffect(() => {
+    if (starRef.current) {
+      if (isStarActive) {
+        starRef.current.classList.add("fa-solid");
+        starRef.current.classList.remove("fa-regular");
+      } else {
+        starRef.current.classList.add("fa-regular");
+        starRef.current.classList.remove("fa-solid");
+      }
+    }
+  }, [isStarActive]);
+
+  return (
+    <div className="text-white relative border-3 border-journal-border top-32 rounded-3xl">
+      <header className="flex p-3 bg-journal-header items-center justify-between journal-header">
+        <div>
+          <h2>خاطرات شمال</h2>
+          <ul className="flex items-center">
+            <li>
+              <h5 className="m-0 p-2 bg-yellow-900 text-yellow-300 rounded-lg">
+                مسافرت
+              </h5>
+            </li>
+            <li className="mr-4">
+              <button
+                onClick={stared}
+                className="p-2 bg-slate-800 w-10 h-10 text-yellow-300 rounded-lg"
+              >
+                <i ref={starRef} className="fa-regular fa-star"></i>
+              </button>
+            </li>
+          </ul>
         </div>
-        <button className="text-3xl">
-          <i class="fi fi-tr-circle-ellipsis flex items-center justify-center"></i>
-        </button>
-      </div>
-    </header>
-    <main className="bg-journal-body p-4 journal-body">
-      <p>
-        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده
-        از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و
-        سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای
-        متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه
-        درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با
-        نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان
-        خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید
-        داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان
-        رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات
-        پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
-      </p>
-    </main>
-    {/*<div className="course-content-shadow absolute bottom-0 right-0 left-0 h-[160px] bg-gradient-to-t from-white dark:from-darker from-0% via-white/[55%] dark:via-darker/[55%] via-70% to-white/0 dark:to-darker/0 to-100%"></div>*/}
-  </div>
-);
+        <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between ml-4 bg-gray-800 text-gray-500 p-2 rounded-xl">
+            1403/03/09
+          </div>
+          <button className="text-3xl">
+            <i className="fi fi-tr-circle-ellipsis flex items-center justify-center"></i>
+          </button>
+        </div>
+      </header>
+      <main className="bg-journal-body p-4 journal-body">
+        <p>
+          لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
+          استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در
+          ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و
+          کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی
+          در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می
+          طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی
+          الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این
+          صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و
+          شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای
+          اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده
+          قرار گیرد.
+        </p>
+      </main>
+    </div>
+  );
+};
 
 const Home = () => {
   // default component content
