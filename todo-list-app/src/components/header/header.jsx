@@ -1,4 +1,5 @@
 import "./header.css";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -55,9 +56,12 @@ const Header = () => {
               </button>
             </li>
             <li>
-              <button className="bg-header-dark font-bold text-purple-org border-1 transition-all duration-300 ease hover:bg-purple-org hover:text-header-dark border-purple-org p-2 w-10 h-10 rounded-3xl flex items-center justify-evenly mr-2">
+              <Link
+                to="/login"
+                className="bg-header-dark font-bold text-purple-org border-1 transition-all duration-300 ease hover:bg-purple-org hover:text-header-dark border-purple-org p-2 w-10 h-10 rounded-3xl flex items-center justify-evenly mr-2"
+              >
                 <i className="fa-solid fa-user"></i>
-              </button>
+              </Link>
             </li>
           </ul>
         </nav>

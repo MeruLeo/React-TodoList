@@ -1,4 +1,4 @@
-import "./home.css";
+import "./start.css";
 import MagicBtn from "./magicBtn";
 import React, { useState, useEffect, useRef } from "react";
 
@@ -346,7 +346,7 @@ const JournalPreview = () => {
   );
 };
 
-const Home = () => {
+const Start = () => {
   // default component content
   const headerText = "تودینگ ، پسر بزرگه دوینگ";
   const paragraphText = `
@@ -526,4 +526,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Start;
