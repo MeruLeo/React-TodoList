@@ -1,0 +1,41 @@
+.form-inputs {
+    position: relative;
+    top: 1rem;
+    margin: 0;
+    padding: 0;
+}
+.form-input {
+    margin: 1rem 0;
+}
+
+.container {
+    cursor: pointer;
+}
+
+.container input {
+    display: none;
+}
+
+.container svg {
+    overflow: visible;
+}
+
+.path {
+    fill: none;
+    stroke: white;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: all 0.5s ease;
+    stroke-dasharray: 241 9999999;
+    stroke-dashoffset: 0;
+    transform: scale(0.7);
+    transform-origin: center;
+}
+
+
+.container input:checked ~ svg .path {
+    stroke-dasharray: 70.5096664428711 9999999;
+    stroke-dashoffset: -262.2723388671875;
+    stroke: #8964e8;
+}

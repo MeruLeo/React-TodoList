@@ -1,5 +1,6 @@
 import { ComponentPreview, Previews } from "@react-buddy/ide-toolbox";
 import { ExampleLoaderComponent, PaletteTree } from "./palette";
+import Login from "../components/account/login/login.jsx";
 
 const ComponentPreviews = () => {
   return (
@@ -9,6 +10,9 @@ const ComponentPreviews = () => {
       </ComponentPreview>
       <ComponentPreview path="/ExampleLoaderComponent">
         <ExampleLoaderComponent />
+      </ComponentPreview>
+      <ComponentPreview path="/Login">
+        <Login />
       </ComponentPreview>
     </Previews>
   );

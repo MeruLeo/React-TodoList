@@ -1,0 +1,20 @@
+.notification {
+    box-shadow: 20px 20px 69px #6e50ba,
+    -20px -20px 69px #a478ff;
+    animation: openNotif .6s ease forwards;
+}
+
+@keyframes openNotif {
+    0% {
+        top: 0;
+        opacity: 0;
+    }
+    50% {
+        top: 8rem;
+        opacity: 1;
+    }
+    100% {
+        top: 7rem;
+        opacity: 1;
+    }
+}

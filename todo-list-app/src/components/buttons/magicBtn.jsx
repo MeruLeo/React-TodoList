@@ -1,4 +1,4 @@
-import "./start.css";
+import "../start/start.css";
 
 const MagicBtn = ({ content, icon }) => {
   return (

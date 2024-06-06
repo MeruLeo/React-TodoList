@@ -1,5 +1,5 @@
 import "./start.css";
-import MagicBtn from "./magicBtn";
+import MagicBtn from "../buttons/magicBtn.jsx";
 import React, { useState, useEffect, useRef } from "react";
 
 // header component => {تودینگ ، پسر بزرگه دوینگ}
